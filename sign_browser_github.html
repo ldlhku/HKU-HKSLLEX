@@ -21,87 +21,97 @@
             margin-bottom: 10px;
             margin-left: 20px;
         }
+
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
     </style>
-</head>tyle>
+</head>
 </head>
 
 <body>
     <h1>HKU HKSLLEX Interactive Sign Browser (GitHub)</h1>
     <div id="tableContainer"></div>
-    <span>Click on the (+) sign to reveal more data.</span>
-    <script src="data.json"></script>
+    <span id="prompt">Click on the (+) sign to reveal more data.</span>
     <script>
-        const tableContainer = document.getElementById('tableContainer');
-        const detailsContainer = document.getElementById('details');
+        // Fetch data from data.json
+        fetch('data.json')
+            .then(response => response.json())
+            .then(datajson => {
+                // Create the Tabulator table after data is loaded
+                const tableContainer = document.getElementById('tableContainer');
+                const detailsContainer = document.getElementById('details');
 
-        const datajson = fetch('data.json').then(response => response.json());
+                const table = new Tabulator(tableContainer, {
+                    columns: [
+                        { title: "ID", field: "HKU_HKSLLEX_ID.id", sorter: "string", headerFilter: true, responsive: 0 },
+                        {
+                            title: "Image", field: "videoFile.nameGIF", formatter: "image", formatterParams: {
+                                height: "128px",
+                                width: "228px",
+                                urlPrefix: "video/webp/"
+                            }, responsive: 0
+                        },
+                        { title: "English", field: "translation.EN-GB.primary", sorter: "string", headerFilter: true, responsive: 0 },
+                        { title: "Written Chinese (Hong Kong)", field: "translation.ZH-HK.primary", sorter: "string", headerFilter: true, responsive: 0 },
+                        { title: "Cantonese", field: "translation.ZH-Yue.primary", sorter: "string", headerFilter: true, responsive: 0 },
+                        { title: "Variant", field: "variant.notes", sorter: "string", headerFilter: true, responsive: 1 },
 
-        const table = new Tabulator(tableContainer, {
+                        { title: "Entry Type", field: "HKU_HKSLLEX_ID.entryType", sorter: "string", headerFilter: true, responsive: 5 },
+                        { title: "Disambiguation (English)", field: "translation.EN-GB.disambiguation", sorter: "string", headerFilter: true, responsive: 0 },
+                        { title: "Disambiguation (Written Chinese)", field: "translation.ZH-HK.disambiguation", sorter: "string", headerFilter: true, responsive: 0 },
+                        { title: "English (Secondary)", field: "translation.EN-GB.secondary", sorter: "string", headerFilter: true, responsive: 5 },
+                        { title: "Standard Written Chinese (Secondary)", field: "translation.ZH-HK.secondary", sorter: "string", headerFilter: true, responsive: 5 },
+                        { title: "Cantonese (Secondary)", field: "translation.ZH-Yue.secondary", sorter: "string", headerFilter: true, responsive: 5 },
+                        { title: "English (Unprocessed)", field: "translation.unprocessed.en-GB", sorter: "string", headerFilter: true, responsive: 6 },
+                        { title: "Standard Written Chinese (Unprocessed)", field: "translation.unprocessed.zh-HK", sorter: "string", headerFilter: true, responsive: 6 },
+                        { title: "Cantonese (Unprocessed)", field: "translation.unprocessed.zh-YUE", sorter: "string", headerFilter: true, responsive: 6 },
+                        { title: "Source", field: "source", sorter: "string", headerFilter: true, responsive: 7 },
+                        { title: "CUHK CSLDS Handshape Codepoint Notation", field: "cuhkcslds_HandshapeFont.CodepointNotation", sorter: "string", headerFilter: true, responsive: 7 },
+                        { title: "ARTO", field: "arto.stringNotation", sorter: "string", headerFilter: true, responsive: 7 },
+                        { title: "ARTO Syllable Boundaries", field: "arto.syllableBoundaries", sorter: "string", headerFilter: true, responsive: 7 },
+                        { title: "EN-GB (Etymology Unprocessed)", field: "etymology.unprocessed.en-GB", sorter: "string", headerFilter: true, responsive: 4 },
+                        { title: "Deaf Rating (Avg)", field: "iconicity.rating.deaf.average", sorter: "number", headerFilter: true, responsive: 3 },
+                        { title: "Deaf Rating (Count)", field: "iconicity.rating.deaf.count", sorter: "number", headerFilter: true, responsive: 7 },
+                        { title: "Hearing Rating (Avg)", field: "iconicity.rating.hearing.average", sorter: "number", headerFilter: true, responsive: 3 },
+                        { title: "Hearing Rating (Count)", field: "iconicity.rating.hearing.count", sorter: "number", headerFilter: true, responsive: 7 }
+                    ],
 
-            columns: [
-                { title: "ID", field: "HKU_HKSLLEX_ID.id", sorter: "string", headerFilter: true , responsive:0},
-                {
-                    title: "Image", field: "videoFile.nameGIF", formatter: "image", formatterParams: {
-                        height: "128px",
-                        width: "228px",
-                        urlPrefix: "video/webp/"
-                    }, responsive:0
-                },
-                { title: "English", field: "translation.EN-GB.primary", sorter: "string", headerFilter: true , responsive:0},
-                { title: "Written Chinese (Hong Kong)", field: "translation.ZH-HK.primary", sorter: "string", headerFilter: true , responsive:0},
-                { title: "Cantonese", field: "translation.ZH-Yue.primary", sorter: "string", headerFilter: true , responsive:0},
-                { title: "Variant", field: "variant.notes", sorter: "string", headerFilter: true , responsive:1},
-                
-                { title: "Entry Type", field: "HKU_HKSLLEX_ID.entryType", sorter: "string", headerFilter: true , responsive:5},
-                { title: "Disambiguation (English)", field: "translation.EN-GB.disambiguation", sorter: "string", headerFilter: true , responsive:0},
-                { title: "Disambiguation (Written Chinese)", field: "translation.ZH-HK.disambiguation", sorter: "string", headerFilter: true , responsive:0},
-                { title: "English (Secondary)", field: "translation.EN-GB.secondary", sorter: "string", headerFilter: true , responsive:5},
-                { title: "Standard Written Chinese (Secondary)", field: "translation.ZH-HK.secondary", sorter: "string", headerFilter: true , responsive:5},
-                { title: "Cantonese (Secondary)", field: "translation.ZH-Yue.secondary", sorter: "string", headerFilter: true , responsive:5},
-                { title: "English (Unprocessed)", field: "translation.unprocessed.en-GB", sorter: "string", headerFilter: true , responsive:6},
-                { title: "Standard Written Chinese (Unprocessed)", field: "translation.unprocessed.zh-HK", sorter: "string", headerFilter: true , responsive:6},
-                { title: "Cantonese (Unprocessed)", field: "translation.unprocessed.zh-YUE", sorter: "string", headerFilter: true , responsive:6},
-                { title: "Source", field: "source", sorter: "string", headerFilter: true , responsive:7},
-                { title: "CUHK CSLDS Handshape Codepoint Notation", field: "cuhkcslds_HandshapeFont.CodepointNotation", sorter: "string", headerFilter: true , responsive:7},
-                { title: "ARTO", field: "arto.stringNotation", sorter: "string", headerFilter: true , responsive:7},
-                { title: "ARTO Syllable Boundaries", field: "arto.syllableBoundaries", sorter: "string", headerFilter: true , responsive:7},
-                { title: "EN-GB (Etymology Unprocessed)", field: "etymology.unprocessed.en-GB", sorter: "string", headerFilter: true , responsive:4},
-                { title: "Deaf Rating (Avg)", field: "iconicity.rating.deaf.average", sorter: "number", headerFilter: true , responsive:3},
-                { title: "Deaf Rating (Count)", field: "iconicity.rating.deaf.count", sorter: "number", headerFilter: true , responsive:7},
-                { title: "Hearing Rating (Avg)", field: "iconicity.rating.hearing.average", sorter: "number", headerFilter: true , responsive:3},
-                { title: "Hearing Rating (Count)", field: "iconicity.rating.hearing.count", sorter: "number", headerFilter: true , responsive:7}
-            ],
+                    data: datajson, // Use the fetched data here
+                    rowHeader: { formatter: "responsiveCollapse" },
+                    responsiveLayoutCollapseStartOpen: false,
+                    pagination: "local",
+                    paginationSize: 10,
+                    filter: true,
+                    sort: true,
+                    responsiveLayout: "collapse"
+                });
 
-            data: datajson,
-            rowHeader:{formatter:"responsiveCollapse"},
-            responsiveLayoutCollapseStartOpen:false,
-            pagination: "local",
-            paginationSize: 10,
-            filter: true,
-            sort: true,
-            responsiveLayout:"collapse"
-        });
+                function displayRowDetails(rowData) {
+                    console.log("Reveal details")
+                    // Clear previous details
+                    detailsContainer.innerHTML = '';
 
-        function displayRowDetails(rowData) {
-            console.log("Reveal details")
-            // Clear previous details
-            detailsContainer.innerHTML = '';
+                    // Create a definition list (dl) to display the details
+                    const dl = document.createElement('dl');
+                    for (const key in rowData) {
+                        const dt = document.createElement('dt');
+                        dt.textContent = key;
+                        dl.appendChild(dt);
 
-            // Create a definition list (dl) to display the details
-            const dl = document.createElement('dl');
-            for (const key in rowData) {
-                const dt = document.createElement('dt');
-                dt.textContent = key;
-                dl.appendChild(dt);
+                        const dd = document.createElement('dd');
+                        // Stringify nested objects for better readability
+                        dd.textContent = JSON.stringify(rowData[key], null, 2);
+                        dl.appendChild(dd);
+                    }
 
-                const dd = document.createElement('dd');
-                // Stringify nested objects for better readability
-                dd.textContent = JSON.stringify(rowData[key], null, 2);
-                dl.appendChild(dd);
-            }
-
-            detailsContainer.appendChild(dl);
-        }
+                    detailsContainer.appendChild(dl);
+                }
+            })
+            .catch(error => {
+                console.error('Error loading data:', error)
+                document.querySelector("#prompt").innerHTML = `Sorry! The database failed to load due to an error: ${error}`
+            }); // Handle fetch errors
     </script>
 
 
