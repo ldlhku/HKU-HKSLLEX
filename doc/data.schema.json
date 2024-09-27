@@ -1,0 +1,528 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "HKU-HKSLLEX Schema Set",
+  "description": "The array of entries that make up HKSLLEX.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "HKU_HKSLLEX_ID": {
+        "type": "object",
+        "description": "Database entry properties.",
+        "properties": {
+          "status": {
+            "enum": [
+              "live",
+              "under_review",
+              "removed"
+            ],
+            "title": "Status",
+            "description": "The status of the entry; can be one of the following values: 'live', 'under_review' or 'removed'. 'Live' entries are fully available for use. 'Under_review' entries are available in data only but not in video. 'Removed' entries are removed from the database by the editors and are not seen by users. Required."
+          },
+          "id": {
+            "type": "string",
+            "title": "ID",
+            "description": "The unique identifier of the entry in the database. It must match the pattern 'HKSLLEX-[year]-[sequence]', where [year] is the year of entry and [sequence] is an eight-digit number with leading zeroes. Required.",
+            "pattern": "^HKSLLEX-\\d{4}-\\d{8}$"
+          },
+          "entryType": {
+            "enum": [
+              "vocabulary",
+              "sentence"
+            ],
+            "default": "vocabulary",
+            "title": "Entry Type",
+            "description": "Specifies the type of entry. 'vocabulary' indicate entries of words. 'sentence' indicate entries of sentences. By default, 'vocabulary' is used. Required."
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Categories",
+            "description": "An array of strings describing the semantic field(s) of the sign, e.g., education, law, medicine."
+          }
+        },
+        "required": [
+          "status",
+          "id",
+          "entryType"
+        ]
+      },
+      "recording": {
+        "type": "object",
+        "title": "Recording",
+        "description": "Data pertaining to the video recording of the entry.",
+        "properties": {
+          "date": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "title": "Date",
+            "description": "The date of video recording. Must be in ISO 8601 format of calendar dates, i.e. YYYY-MM-DD."
+          },
+          "remarks": {
+            "type": "string",
+            "title": "Remarks",
+            "description": "Remarks made by researchers during video recording."
+          }
+        },
+        "required": [
+          "date"
+        ]
+      },
+      "videoFile": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "File Name",
+            "description": "The file name of the video, including the file extension."
+          },
+          "nameOSF": {
+            "type": "string",
+            "title": "File Name OSF",
+            "description": "The file name of the video on OSF, including the file extension."
+          },
+          "nameGIF": {
+            "type": "string",
+            "title": "File Name webP",
+            "description": "The file name of the video animated webP, including the file extension. This was originally in animated GIF format."
+          },
+          "duration": {
+            "type": "number",
+            "title": "Duration",
+            "description": "The length of the video file in milliseconds."
+          },
+          "fileExtension": {
+            "type": "string",
+            "title": "File Extension",
+            "default": "mp4",
+            "description": "The file extension of the video file. By default it is mp4."
+          },
+          "supplementary": {
+            "type": "array",
+            "title": "Supplementary video files",
+            "description": "Video files that supplement the video recording.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "fileName": {
+                  "type": "string",
+                  "title": "File Name",
+                  "description": "The file name of the supplementary video file to the video recording."
+                },
+                "type": {
+                  "enum": [
+                    "definition",
+                    "example"
+                  ],
+                  "title": "Type",
+                  "description": "Specifies the type of supplementary video. 'definition' shows an HKSL definition of the word entry. 'example' shows an example of the word entry."
+                },
+                "content": {
+                  "type": "object",
+                  "title": "Content",
+                  "description": "Content data of the supplementary video file.",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "title": "Text",
+                      "description": "The textual content of the supplementary video file."
+                    },
+                    "language": {
+                      "type": "string",
+                      "title": "Language",
+                      "description": "The language in which the textual content of the supplementary video file is written, in two parts delimited by a hyphen: first the ISO 639-1 two-letter code for the language, then either the ISO 3166-1 code for region or ISO 639-3 three-letter language code."
+                    }
+                  },
+                  "required": [
+                    "text",
+                    "language"
+                  ]
+                }
+              },
+              "required": [
+                "fileName",
+                "type",
+                "content"
+              ]
+            }
+          }
+        },
+        "required": [
+          "name",
+          "fileExtension"
+        ]
+      },
+      "ASLLEX2": {
+        "type": "object",
+        "title": "ASLLEX2",
+        "description": "Mapping data with ASL-LEX-2.0",
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "id",
+            "description": "The EntryID of the corresponding entry in ASL-LEX-2.0."
+          },
+          "legacyIdMapping": {
+            "type": "string",
+            "title": "Legacy ID mapping",
+            "description": "The deprecated reference to the EntryID in ASL-LEX-2.0. Used in previous projects only.",
+            "deprecated": true
+          },
+          "correspondance": {
+            "enum": [
+              "1to1",
+              "Mto1",
+              "Mto1_other",
+              "1toM",
+              "noASLLEX2",
+              "MtoN",
+              "Mto1_primary"
+            ],
+            "title": "Correspondance",
+            "description": "Describes the correspondance of entries between HKSLLEX and ASL-LEX-2.0. '1to1' indicates a one-to-one correspondance. 'Mto1' indicates that multiple HKSLLEX entries correspond to one ASLLEX entry. 'Mto1_other' indicates that an HKSLLEX entry corresponds to one ASLLEX entry, but the HKSLLEX entry also has other sources. '1toM' indicates that one HKSLLEX entry corresponds to multiple ASLLEX entries. 'noASLLEX2' indicates that the HKSLLEX entry has no corresponding ASLLEX entry. 'MtoN' indicates a many-to-many correspondance. 'Mto1_primary' indicates that multiple HKSLLEX entries correspond to one ASLLEX entry, with one of the HKSLLEX entries designated as the primary correspondance."
+          }
+        }
+      },
+      "translation": {
+        "type": "object",
+        "title": "Translation",
+        "description": "Translation data of the entry in different languages and categories.",
+        "properties": {
+          "EN-GB": {
+            "type": "object",
+            "title": "British English",
+            "description": "British English translation of the sign.",
+            "properties": {
+              "primary": {
+                "type": "string",
+                "title": "Primary",
+                "description": "The primary British English translation of the sign. Intended as a dictionary entry."
+              },
+              "disambiguation": {
+                "type": "string",
+                "title": "Disambiguation",
+                "description": "Notes for disambiguating the sign in British English."
+              },
+              "secondary": {
+                "type": "string",
+                "title": "Secondary",
+                "description": "Secondary British English translation(s) of the sign."
+              }
+            }
+          },
+          "ZH-HK": {
+            "type": "object",
+            "title": "Standard Written Chinese (Hong Kong)",
+            "description": "Standard Written Chinese (in Hong Kong) translation of the sign.",
+            "properties": {
+              "primary": {
+                "type": "string",
+                "title": "Primary",
+                "description": "The primary Standard Written Chinese (in Hong Kong) translation of the sign. Intended as a dictionary entry."
+              },
+              "disambiguation": {
+                "type": "string",
+                "title": "Disambiguation",
+                "description": "Notes for disambiguating the sign in Standard Written Chinese (in Hong Kong)."
+              },
+              "secondary": {
+                "type": "string",
+                "title": "Secondary",
+                "description": "Secondary Standard Written Chinese (in Hong Kong) translation(s) of the sign."
+              }
+            }
+          },
+          "ZH-Yue": {
+            "type": "object",
+            "title": "Hong Kong Cantonese",
+            "description": "Hong Kong Cantonese translation of the sign.",
+            "properties": {
+              "primary": {
+                "type": "string",
+                "title": "Primary",
+                "description": "The primary Hong Kong Cantonese translation of the sign. Intended as a dictionary entry."
+              },
+              "secondary": {
+                "type": "string",
+                "title": "Secondary",
+                "description": "Secondary Hong Kong Cantonese translation(s) of the sign."
+              }
+            }
+          },
+          "unichar": {
+            "type": "string",
+            "title": "Unichar",
+            "description": "The Unicode characters of the sign. For compatibilty purpose only.",
+            "deprecated": true
+          },
+          "unprocessed": {
+            "type": "object",
+            "title": "Unprocessed",
+            "description": "Unprocessed translation data of the entry.",
+            "properties": {
+              "en-GB": {
+                "type": "string",
+                "title": "British English",
+                "description": "Unprocessed British English translation of the sign."
+              },
+              "zh-HK": {
+                "type": "string",
+                "title": "Standard Written Chinese (Hong Kong)",
+                "description": "Unprocessed Standard Written Chinese (in Hong Kong) translation of the sign."
+              },
+              "zh-YUE": {
+                "type": "string",
+                "title": "Hong Kong Cantonese",
+                "description": "Unprocessed Hong Kong Cantonese translation of the sign."
+              }
+            }
+          },
+          "literal": {
+            "type": "object",
+            "title": "Literal",
+            "description": "Literal translation data of the entry.",
+            "properties": {
+              "en-GB": {
+                "type": "string",
+                "title": "British English",
+                "description": "Literal British English translation of the sign."
+              },
+              "zh-HK": {
+                "type": "string",
+                "title": "Standard Written Chinese (Hong Kong)",
+                "description": "Literal Standard Written Chinese (in Hong Kong) translation of the sign."
+              },
+              "zh-YUE": {
+                "type": "string",
+                "title": "Hong Kong Cantonese",
+                "description": "Literal Hong Kong Cantonese translation of the sign."
+              }
+            }
+          },
+          "figurative": {
+            "type": "object",
+            "title": "Figurative",
+            "description": "Figurative translation data of the entry.",
+            "properties": {
+              "en-GB": {
+                "type": "string",
+                "title": "British English",
+                "description": "Figurative British English translation of the sign."
+              },
+              "zh-HK": {
+                "type": "string",
+                "title": "Standard Written Chinese (Hong Kong)",
+                "description": "Figurative Standard Written Chinese (in Hong Kong) translation of the sign."
+              },
+              "zh-YUE": {
+                "type": "string",
+                "title": "Hong Kong Cantonese",
+                "description": "Figurative Hong Kong Cantonese translation of the sign."
+              }
+            }
+          }
+        }
+      },
+      "source": {
+        "enum": [
+          "ASLLEX2",
+          "HKU-HKSLLEX",
+          "HKSL-PSLC"
+        ],
+        "title": "Source",
+        "description": "The source of the entry. 'ASLLEX2' are translations of words found in ASL-LEX-2.0. 'HKSL-PSLC' refers to words listed in teaching materials of the Professional Sign Language Training Centre. 'HKU-HKSLLEX' are self-initiated records."
+      },
+      "variant": {
+        "type": "object",
+        "title": "Variant",
+        "description": "Contains information about the variation of the word as depicted in this entry.",
+        "properties": {
+          "number": {
+            "type": "integer",
+            "decprecated": true,
+            "title": "Number",
+            "description": "The index number of the variation relative to the primary entry. Unused."
+          },
+          "notes": {
+            "type": "string",
+            "title": "Notes",
+            "description": "A description of the variant form of sign depicted in this entry."
+          }
+        }
+      },
+      "lexicalCategory": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+          "type": "string"
+        },
+        "title": "Lexical Category",
+        "description": "The lexical categories of the primary ZH-Yue translation of the entry. The lexical categories are in Standard Written Chinese. Corresponds to the entries on words.hk."
+      },
+      "cuhkcslds_HandshapeFont": {
+        "type": "object",
+        "title": "CUHKCSLDS Handshape Font",
+        "description": "The handshape encoding of the sign, with reference to the list of handshapes as used in the Handshape Font developed by the Centre for Sign Linguistics and Deaf Studies. (Refer to the documentation for the list of handshapes.)",
+        "properties": {
+          "CodepointNotation": {
+            "type": "string",
+            "pattern": "^(\\d+(?:[;,.]\\d+)+)$",
+            "title": "Codepoint Notation",
+            "description": "The handshapes of the sign, referenced by their decimal codepoints. The handshapes are encoded in pairs, the left decimal value representing the dominant hand, and the right decimal value representing the non-dominant hand, separated by a semicolon (;). Words are delimited by a full-stop (.), morphemes delimited by a comma (,). Polysyllabic morphemes may have multiple pairs of codepoints separated by a semicolon (;).",
+            "example": "12;15;12;0,14;0.14;51,14;12"
+          }
+        }
+      },
+      "arto": {
+        "type": "object",
+        "title": "ARTO Coding of Iconic Strategy",
+        "description": "The iconic strategy data of the sign.",
+        "properties": {
+          "stringNotation": {
+            "type": "string",
+            "pattern": "^(?:(?:[ARTON2]{0,}[arton]{0,})(?:, ?)?)+$",
+            "title": "ARTO String Notation",
+            "description": "The iconic strategy of the sign represented in ARTO String Notation. Refer to the documentation for details.",
+            "example": "Ar,T"
+          },
+          "syllableBoundaries": {
+            "title": "Syllable boundaries",
+            "description": "The number of syllables represented in each ARTO symbol.",
+            "type": "string",
+            "pattern": "^(?:\\d\\.){0,}\\d$"
+          }
+        }
+      },
+      "morphemeCount": {
+        "title": "Morpheme count",
+        "description": "The number of morphemes in the sign.",
+        "type": "integer"
+      },
+      "demonstrator": {
+        "title": "Demonstrator",
+        "description": "The name of the person demonstrating the sign.",
+        "type": "string"
+      },
+      "etymology": {
+        "type": "object",
+        "title": "Etymology",
+        "description": "Information about the etymology of the sign.",
+        "properties": {
+          "unprocessed": {
+            "type": "object",
+            "title": "Unprocessed",
+            "description": "Unprocessed etymology data of the entry.",
+            "properties": {
+              "en-GB": {
+                "type": "string",
+                "title": "British English",
+                "description": "Unprocessed British English etymology data of the sign."
+              },
+              "zh-YUE": {
+                "type": "string",
+                "title": "Hong Kong Cantonese",
+                "description": "Unprocessed Hong Kong Cantonese etymology data of the sign."
+              }
+            }
+          },
+          "formal": {
+            "type": "object",
+            "title": "Formal",
+            "description": "Etymology data of the entry in a structural format.",
+            "properties": {
+              "en-GB": {
+                "type": "object",
+                "title": "British English",
+                "description": "British English etymology data of the sign in a structural format. The shape will be defined at a later stage."
+              },
+              "zh-HK": {
+                "type": "object",
+                "title": "Standard Written Chinese (Hong Kong)",
+                "description": "Standard Written Chinese (in Hong Kong) etymology data of the sign  in a structural format. The shape will be defined at a later stage."
+              },
+              "zh-YUE": {
+                "type": "object",
+                "title": "Hong Kong Cantonese",
+                "description": "Hong Kong Cantonese etymology data of the sign in a structural format. The shape will be defined at a later stage."
+              }
+            }
+          },
+          "category": {
+            "enum": [
+              "PURE_SIGN",
+              "VERBAL_SIGN",
+              "ORTHOGRAPHIC_SIGN",
+              "PURE_SIGN,VERBAL_SIGN",
+              "PURE_SIGN,ORTHOGRAPHIC_SIGN",
+              "VERBAL_SIGN,ORTHOGRAPHIC_SIGN",
+              "PURE_SIGN,VERBAL_SIGN,ORTHOGRAPHIC_SIGN"
+            ],
+            "title": "Category",
+            "description": "The category of the etymology of the sign. 'PURE_SIGN' indicates pure signs. 'VERBAL_SIGN' indicates the sign is based on spoken language. 'ORTHOGRAPHIC_SIGN' indicates the sign is based on written language."
+          }
+        }
+      },
+      "iconicity": {
+        "type": "object",
+        "title": "Iconicity",
+        "description": "Iconicity data of the sign.",
+        "properties": {
+          "rating": {
+            "type": "object",
+            "title": "Rating",
+            "description": "Iconicity rating of the sign.",
+            "properties": {
+              "deaf": {
+                "type": "object",
+                "title": "Deaf",
+                "description": "Iconicity rating by deaf signers.",
+                "properties": {
+                  "average": {
+                    "type": "number",
+                    "title": "Average",
+                    "description": "The average iconicity rating given by deaf signers."
+                  },
+                  "count": {
+                    "type": "integer",
+                    "title": "Count",
+                    "description": "The number of deaf signers who rated the sign."
+                  }
+                }
+              },
+              "hearing": {
+                "type": "object",
+                "title": "Hearing",
+                "description": "Iconicity rating by hearing signers.",
+                "properties": {
+                  "average": {
+                    "type": "number",
+                    "title": "Average",
+                    "description": "The average iconicity rating given by hearing signers."
+                  },
+                  "count": {
+                    "type": "integer",
+                    "title": "Count",
+                    "description": "The number of hearing signers who rated the sign."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "HKU_HKSLLEX_ID",
+      "recording",
+      "videoFile",
+      "translation",
+      "source",
+      "demonstrator"
+    ],
+    "title": "Entry",
+    "description": "An entry of Hong Kong Sign Language word or sentence.",
+    "uniqueItems": true
+  }
+}
