@@ -1,0 +1,441 @@
+/*--------------------------------------------------------------
+# Typography & Layout Customized
+
+By Aaron Chik (Sep 2022)
+--------------------------------------------------------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@100;300;400;500;700;900&Noto+Sans+SC:wght@100;300;400;500;700;900&family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lexend:wght@400;600&B612+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/*-------- material icons ------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 200,
+  'opsz' 20
+}
+
+/* ------- Brand colours ------- */
+:root {
+  --ldl-color-primary: #00bdd3;
+  --ldl-color-accent: #be58a1;
+  --ldl-color-action: #B24C9B;
+}
+
+
+/* ------- Layout customized ------- */
+
+
+
+
+/* Font Families ----------------------------- */
+
+
+.widget_text p,
+.widget_text ol,
+.widget_text ul,
+.widget_text dl,
+.widget_text dt,
+.widget-content .rssSummary {
+	font-family: "Public Sans","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+	letter-spacing: normal;
+}
+
+.widget-content cite,
+.widget-content figcaption,
+.widget-content .wp-caption-text {
+	font-family: "Public Sans","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+
+@supports ( font-variation-settings: normal ) {
+
+	.widget-content cite,
+	.widget-content figcaption,
+	.widget-content .wp-caption-text {
+		font-family: "Public Sans","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+	}
+}
+
+body {
+	background: #f5efe0;
+	box-sizing: border-box;
+	color: #000;
+	font-family: "Public Sans","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 1.8rem;
+	letter-spacing: -0.015em;
+	text-align: left;
+}
+
+@supports ( font-variation-settings: normal ) {
+
+	body {
+		font-family: "Public Sans","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+	}
+}
+
+
+/* ----------------------------------------------
+Inter variable font. Usage:
+
+@supports (font-variation-settings: normal) {
+	html { font-family: 'Inter var', sans-serif; }
+}
+---------------------------------------------- */
+/* I don't see why I need to use Inter fonts now 
+ 
+@font-face {
+	font-family: "Inter var";
+	font-weight: 100 900; 
+
+*/
+
+/* stylelint-disable-line font-weight-notation */
+/* 
+	font-style: normal;
+	font-display: swap;
+	src: url(./assets/fonts/inter/Inter-upright-var.woff2) format("woff2");
+} */
+/* 
+@font-face {
+	font-family: "Inter var";
+	font-weight: 100 900; */ /* stylelint-disable-line font-weight-notation */ /*
+	font-style: italic;
+	font-display: swap;
+	src: url(./assets/fonts/inter/Inter-italic-var.woff2) format("woff2");
+}
+ */
+
+code,
+kbd,
+pre,
+samp {
+	font-family: 'B612 Mono', monospace;
+	font-size: 0.9em;
+	padding: 0.4rem 0.6rem;
+}
+
+
+* {
+	line-height: 1.5;
+	hyphens: manual;
+}
+
+input,
+textarea,
+button,
+.button,
+.faux-button,
+.wp-block-button__link,
+.wp-block-file__button {
+	font-family: "Public Sans","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+	line-height: 1;
+}
+
+@supports ( font-variation-settings: normal ) {
+
+	input,
+	textarea,
+	button,
+	.button,
+	.faux-button,
+	.faux-button.more-link,
+	.wp-block-button__link,
+	.wp-block-file__button {
+		font-family: "Public Sans","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+	}
+}
+
+.has-drop-cap:not(:focus)::first-letter {
+	color: #cd2653;
+	font-family: "Public Sans","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 5.1em;
+	font-weight: 800;
+	margin: 0.05em 0.1em 0 0;
+}
+
+/* Block Font Families ----------------------- */
+
+.has-drop-cap:not(:focus)::first-letter,
+.entry-content .wp-block-archives,
+.entry-content .wp-block-categories,
+.entry-content .wp-block-cover-image,
+.entry-content .wp-block-latest-comments,
+.entry-content .wp-block-latest-posts,
+.entry-content .wp-block-pullquote,
+.entry-content .wp-block-quote.is-large,
+.entry-content .wp-block-quote.is-style-large {
+	font-family: "Public Sans","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+
+@supports ( font-variation-settings: normal ) {
+
+	.has-drop-cap:not(:focus)::first-letter,
+	.entry-content .wp-block-archives,
+	.entry-content .wp-block-categories,
+	.entry-content .wp-block-latest-posts,
+	.entry-content .wp-block-latest-comments,
+	.entry-content .wp-block-cover-image p,
+	.entry-content .wp-block-pullquote {
+		font-family: "Public Sans","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+	}
+}
+
+
+
+/* Font Families ----------------------------- */
+
+.entry-content {
+	font-family: "Public Sans","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+	letter-spacing: normal;
+}
+
+.entry-content h1,
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6,
+.entry-content cite,
+.entry-content figcaption,
+.entry-content table,
+.entry-content address,
+.entry-content .wp-caption-text,
+.entry-content .wp-block-file {
+	font-family: "Lexend","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+		margin: 0px;
+}
+
+
+@supports ( font-variation-settings: normal ) {
+
+	.entry-content h1,
+	.entry-content h2,
+	.entry-content h3,
+	.entry-content h4,
+	.entry-content h5,
+	.entry-content h6,
+	.entry-content cite,
+	.entry-content figcaption,
+	.entry-content table,
+	.entry-content address,
+	.entry-content .wp-caption-text,
+	.entry-content .wp-block-file {
+		font-family: "Lexend","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+		margin: 0px;
+	}
+}
+
+
+/* Font Families ----------------------------- */
+
+.widget_text p,
+.widget_text ol,
+.widget_text ul,
+.widget_text dl,
+.widget_text dt,
+.widget-content .rssSummary {
+	font-family: "Public Sans","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+	letter-spacing: normal;
+}
+
+.widget-content cite,
+.widget-content figcaption,
+.widget-content .wp-caption-text {
+	font-family: "Public Sans","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+@supports ( font-variation-settings: normal ) {
+
+	.widget-content cite,
+	.widget-content figcaption,
+	.widget-content .wp-caption-text {
+		font-family: "Public Sans","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+	}
+}
+
+/*------------ Basic definition ------------ */
+
+body,
+button,
+input,
+select,
+textarea {
+    font-family: "Public Sans","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, elementor-tab-title,
+.main-navigation a:not(arrow_carrot-down) {
+    font-family: "Lexend","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+	letter-spacing: 0px;
+}
+
+.elementor-widget-wp-widget-recent-posts a {
+    font-family: "Lexend","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+	letter-spacing: 0px;
+}
+
+body .primary-font {
+    font-family: "Public Sans","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+body .secondary-font {
+    font-family: "Public Sans","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+pre {
+    font-family: 'B612 Mono', monospace;
+}
+
+code, kbd, tt, var {
+    font-family: 'B612 Mono', monospace;
+}
+
+a { 
+	font-weight: bold;
+	color: var(--ldl-color-action);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin:0px;
+	hyphens: auto;
+}
+
+h1, h3, h5 {
+	text-transform: uppercase;
+}
+
+div .elementor-tab-title {
+	color: #000;
+	font-family: "Public Sans","Noto Sans HK","Noto Sans SC",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+	font-style: normal;
+	font-size: 1.8rem;
+	letter-spacing: -0.015em;
+	text-align: left;
+}
+
+/*--------
+Do post headings really need to be that big?
+--------*/
+
+article.post header div h1.entry-title, h2.entry-title {
+		font-size: 4rem;
+	}
+
+/*------------ Custom classes ------------ */
+
+span.smallcaps {
+	font-variant: small-caps;
+}
+
+/* getting rid of the wordpress footer */
+
+.powered-by-wordpress {
+	display: none !important;
+}
+
+
+
+a.textlink { 
+	padding: 0.25rem;
+	background-clip: padding-box;
+	border-radius: 0.25rem;
+	border: 0.1rem solid var(--ldl-color-action);
+	text-transform: uppercase;
+	font-size: smaller;
+	white-space: nowrap;
+}
+
+a.textlink:hover { 
+	background-color: var(--ldl-color-action);
+	color: #FFFFFF;
+	background-clip: padding-box;
+	border-radius: 0.25rem;
+	text-transform: uppercase;
+}
+
+/* doi links get special treatment! */
+a[href^="https://doi.org/"] { 
+	padding: 0.25rem;
+	background-clip: padding-box;
+	border-radius: 0.25rem;
+	border: 0.1rem solid var(--ldl-color-action);
+	text-transform: uppercase;
+	font-size: smaller;
+	white-space: nowrap;
+}
+
+a[href^="https://doi.org/"]:hover { 
+	background-color: var(--ldl-color-action);
+	color: #FFFFFF;
+	background-clip: padding-box;
+	border-radius: 0.25rem;
+	text-transform: uppercase;
+}
+
+
+a span.material-symbols-outlined { 
+	font-size:2rem;
+	vertical-align: middle;
+}
+
+a:hover span.material-symbols-outlined { 
+  font-variation-settings:
+  'GRAD' 0	
+}
+
+/* PURE CSS TOOLTIP */
+
+/* Tooltip container */
+h4.elementor-image-box-title>div.tooltip {
+  position: relative;
+  display: inline-block;
+  /* border-bottom: 0.5px dotted var(--ldl-color-action); */
+}
+
+/* Tooltip text */
+h4.elementor-image-box-title>div.tooltip div.tooltipcontent {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+	font-family: "Public Sans","Noto Sans HK","Noto Sans SC","Noto Sans K",-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 1.8rem;
+  position: absolute;
+  z-index: 1; 
+  transition: opacity 0.5s;
+  
+  width: 150px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -75px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+/*
+h4.elementor-image-box-title>div.tooltip.aliases div.tooltipcontent::before {
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 10px;
+}
+*/
+
+h4.elementor-image-box-title>div.tooltip.aliases div.tooltipcontent{
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 0;
+  padding:10px;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+h4.elementor-image-box-title>div.tooltip:hover div.tooltipcontent {
+  visibility: visible;
+  opacity: 1;
+}

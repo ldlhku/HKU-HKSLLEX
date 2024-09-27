@@ -1,30 +1,66 @@
-<h1 id="hku-hksllex---hong-kong-sign-language-database">HKU-HKSLLEX -
-    Hong Kong Sign Language Database</h1>
-<p>HKSLLEX is a collection of Hong Kong Sign Language data as part of
-    the documentation effort of the Knowledge Exchange project <a
-        href="https://linguistics.hku.hk/ldlhku/hong-kong-sign-language">“The
-        Sound of Silence - A Journey through Deaf Culture in Hong Kong”</a>.
-    This repository is designed to store and organize a comprehensive
-    database of Hong Kong Sign Language (HKSL) words, their English
-    translations, and associated research data. It aims to provide a
-    valuable resource for linguists, researchers, and educators studying
-    HKSL, as well as individuals interested in learning the language.</p>
-<h2 id="how-to-access-the-data"><strong>How to access the
-        data?</strong></h2>
-<p>GitHub version only: you can browse the signs online <a href="sign_browser_github.html">using the online sign
-        browser</a>.</p>
-<p>After downloading the database, open “sign_browser.html” for a
-    user-friendly view of the database. The video/webp/ folder must be
-    downloaded for the sign_browser to work.</p>
-<p>Alternatively, you can download the entire database and access the
-    data files. Videos are available in the video/ folder.</p>
-<h2 id="documentation"><strong>Documentation</strong></h2>
-<p>The database structure is defined in “data.schema.json” file. A human
-    readable version is available in the docs folder.</p>
-<h2 id="data-format"><strong>Data Format</strong></h2>
-<p>The data is stored in JSON format. A flattened CSV file (in UTF8-BOM)
-    is also provided for easy access.</p>
-<p>The HKSL videos are provided in two formats. Available on OSF are the
-    videos in reduced MP4 and WebP formats (due to storage limitations);
-    they can be found in video/small and video/webP respectively. Full,
-    high-definition videos are available on request.</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HKU-HKSLLEX</title>
+
+    <link href="doc/css/ldl_css.css" rel="stylesheet">
+    <style>
+        /* Add this style for the logo */
+        .logo-container {
+            text-align: center;
+            /* Center the logo horizontally */
+            margin-bottom: 20px;
+            /* Add some space below the logo */
+        }
+
+        .logo-container img {
+            max-height: 72px;
+            /* Limit the logo height to 72px */
+            width: auto;
+            /* Maintain aspect ratio */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="logo-container">
+        <img src="doc/css/LDL_2024_WordMarkLogo.svg" alt="LDL Logo">
+    </div>
+
+    <h1 id="hku-hksllex---hong-kong-sign-language-database">HKU-HKSLLEX -
+        Hong Kong Sign Language Database</h1>
+    <p>HKSLLEX is a collection of Hong Kong Sign Language data as part of
+        the documentation effort of the Knowledge Exchange project <a
+            href="https://linguistics.hku.hk/ldlhku/hong-kong-sign-language">“The
+            Sound of Silence - A Journey through Deaf Culture in Hong Kong”</a>.
+        This repository is designed to store and organize a comprehensive
+        database of Hong Kong Sign Language (HKSL) words, their English
+        translations, and associated research data. It aims to provide a
+        valuable resource for linguists, researchers, and educators studying
+        HKSL, as well as individuals interested in learning the language.</p>
+    <h2 id="how-to-access-the-data"><strong>How to access the
+            data?</strong></h2>
+    <p>GitHub version only: you can browse the signs online <a href="sign_browser_github.html">using the online sign
+            browser</a>.</p>
+    <p>After downloading the database, open “sign_browser.html” for a
+        user-friendly view of the database. The video/webp/ folder must be
+        downloaded for the sign_browser to work.</p>
+    <p>Alternatively, you can download the entire database and access the
+        data files. Videos are available in the video/ folder.</p>
+    <h2 id="documentation"><strong>Documentation</strong></h2>
+    <p>The database structure is defined in “data.schema.json” file. A human
+        readable version is available in the docs folder.</p>
+    <h2 id="data-format"><strong>Data Format</strong></h2>
+    <p>The data is stored in JSON format. A flattened CSV file (in UTF8-BOM)
+        is also provided for easy access.</p>
+    <p>The HKSL videos are provided in two formats. Available on OSF are the
+        videos in reduced MP4 and WebP formats (due to storage limitations);
+        they can be found in video/small and video/webP respectively. Full,
+        high-definition videos are available on request.</p>
+</body>
+
+</html>
