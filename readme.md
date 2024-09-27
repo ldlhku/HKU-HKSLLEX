@@ -1,5 +1,3 @@
-See beneath for changelog
-
 ## **How to access the data?**
 
 After downloading the database, open "sign_browser.html" for a user-friendly view of the database. The video/webp/ folder must be downloaded for the sign_browser to work.
