@@ -6,7 +6,7 @@ This repository is also available on [OSF.io](https://osf.io/t4x56).
 
 ## **How to access the data?**
 
-GitHub version only: you can browse the signs online [using the online sign browser](https://ldlhku.github.io/HKU-HKSLLEX-Mirror/sign_browser_github.html).
+GitHub version only: you can browse the signs online [using the online sign browser](https://ldlhku.github.io/HKU-HKSLLEX/sign_browser_github.html).
 
 After downloading the database, open "sign_browser.html" for a user-friendly view of the database. The video/webp/ folder must be downloaded for the sign_browser to work.
 
