@@ -1,5 +1,7 @@
 # HKU-HKSLLEX - Hong Kong Sign Language Database
 
+**The database is in BETA!** Open a new issue or browse current ones at [issues](https://github.com/ldlhku/HKU-HKSLLEX/issues).
+
 HKSLLEX is a collection of Hong Kong Sign Language data as part of the documentation effort of the Knowledge Exchange project ["The Sound of Silence - A Journey through Deaf Culture in Hong Kong"](https://linguistics.hku.hk/ldlhku/hong-kong-sign-language). This repository is designed to store and organize a comprehensive database of Hong Kong Sign Language (HKSL) words, their English translations, and associated research data. It aims to provide a valuable resource for linguists, researchers, and educators studying HKSL, as well as individuals interested in learning the language.
 
 This repository is also available on [OSF.io](https://osf.io/t4x56).
