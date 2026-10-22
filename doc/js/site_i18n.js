@@ -20,6 +20,8 @@
             "English (UK)": "English (UK)",
             "繁體中文（香港）": "繁體中文（香港）",
             "Data schema": "資料結構",
+            "Download JSON": "下載 JSON",
+            "Download CSV": "下載 CSV",
             "Browse the local database": "瀏覽本機資料庫",
             "Find a sign": "搜尋手語詞條",
             "Local database": "本機資料庫",
@@ -54,8 +56,8 @@
             "Sort": "排序",
             "Sort results": "排序結果",
             "Toggle sort direction": "切換排序方向",
-            "Sort ascending": "升冪排序",
-            "Sort descending": "降冪排序",
+            "Sort ascending": "順序",
+            "Sort descending": "倒序",
             "Per page": "每頁筆數",
             "Results per page": "每頁結果數",
             "Result pages": "結果頁面",
@@ -470,6 +472,22 @@
         "iconicity.rating.hearing.count": {
             title: "像似度評分 / 健聽人 / 人數",
             description: "參與評分的健聽人人數。"
+        },
+        "suttonSignWriting": {
+            title: "Sutton SignWriting",
+            description: "該手語詞條之 Sutton SignWriting 表示方式。"
+        },
+        "suttonSignWriting.FSW": {
+            title: "Formal SignWriting",
+            description: "該手語詞條之 Formal SignWriting（FSW）記法。"
+        },
+        "suttonSignWriting.SWU": {
+            title: "SignWriting in Unicode",
+            description: "該手語詞條之 SignWriting Unicode（SWU）表示方式。"
+        },
+        "suttonSignWriting.renderNameSvg": {
+            title: "SVG 繪圖檔名",
+            description: "該手語詞條之 SVG 繪圖檔名。"
         }
     };
 

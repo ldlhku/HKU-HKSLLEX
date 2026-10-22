@@ -628,6 +628,9 @@
         const term = make("dt", "", presentation.title);
         if (presentation.description) term.title = presentation.description;
         const definition = make("dd", "", displayValue(value));
+        if (field.path === "suttonSignWriting.SWU") {
+            definition.classList.add("noto-sans-signwriting-regular");
+        }
         item.append(term, definition);
         list.append(item);
     }

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SignWriting&display=swap');
+
 :root {
     --brand-primary: rgb(0, 189, 211);
     --brand-secondary: rgb(190, 88, 161);
@@ -876,6 +878,12 @@ select:focus,
     overflow-wrap: anywhere;
     white-space: pre-wrap;
     font-size: 12px;
+}
+
+.noto-sans-signwriting-regular {
+    font-family: "Noto Sans SignWriting", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .video-downloads {

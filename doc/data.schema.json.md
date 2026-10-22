@@ -82,6 +82,10 @@
       - [1.14.1.2. [Optional] Property HKU-HKSLLEX Schema Set > Entry > iconicity > rating > hearing](#items_iconicity_rating_hearing)
         - [1.14.1.2.1. [Optional] Property HKU-HKSLLEX Schema Set > Entry > iconicity > rating > hearing > average](#items_iconicity_rating_hearing_average)
         - [1.14.1.2.2. [Optional] Property HKU-HKSLLEX Schema Set > Entry > iconicity > rating > hearing > count](#items_iconicity_rating_hearing_count)
+  - [1.15. [Optional] Property HKU-HKSLLEX Schema Set > Entry > suttonSignWriting](#items_suttonSignWriting)
+    - [1.15.1. [Optional] Property HKU-HKSLLEX Schema Set > Entry > suttonSignWriting > FSW](#items_suttonSignWriting_FSW)
+    - [1.15.2. [Optional] Property HKU-HKSLLEX Schema Set > Entry > suttonSignWriting > SWU](#items_suttonSignWriting_SWU)
+    - [1.15.3. [Optional] Property HKU-HKSLLEX Schema Set > Entry > suttonSignWriting > renderNameSvg](#items_suttonSignWriting_renderNameSvg)
 
 **Title:** HKU-HKSLLEX Schema Set
 
@@ -1733,5 +1737,81 @@ Must be one of:
 </blockquote>
 </details>
 
+<details>
+<summary>
+<strong> <a name="items_suttonSignWriting"></a>1.15. [Optional] Property HKU-HKSLLEX Schema Set > Entry > suttonSignWriting</strong>
+
+</summary>
+<blockquote>
+
+**Title:** Sutton SignWriting
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Sutton SignWriting representations of the sign.
+
+<details>
+<summary>
+<strong> <a name="items_suttonSignWriting_FSW"></a>1.15.1. [Optional] Property HKU-HKSLLEX Schema Set > Entry > suttonSignWriting > FSW</strong>
+
+</summary>
+<blockquote>
+
+**Title:** Formal SignWriting
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The sign's Formal SignWriting (FSW) notation.
+
+</blockquote>
+</details>
+
+<details>
+<summary>
+<strong> <a name="items_suttonSignWriting_SWU"></a>1.15.2. [Optional] Property HKU-HKSLLEX Schema Set > Entry > suttonSignWriting > SWU</strong>
+
+</summary>
+<blockquote>
+
+**Title:** SignWriting in Unicode
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The sign's SignWriting in Unicode (SWU) representation.
+
+</blockquote>
+</details>
+
+<details>
+<summary>
+<strong> <a name="items_suttonSignWriting_renderNameSvg"></a>1.15.3. [Optional] Property HKU-HKSLLEX Schema Set > Entry > suttonSignWriting > renderNameSvg</strong>
+
+</summary>
+<blockquote>
+
+**Title:** Rendered SVG filename
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The filename of the SVG rendering for the sign.
+
+</blockquote>
+</details>
+
+</blockquote>
+</details>
 ----------------------------------------------------------------------------------------------------------------------------
 Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans)

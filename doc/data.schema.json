@@ -2,6 +2,7 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "HKU-HKSLLEX Schema Set",
   "description": "The array of entries that make up HKSLLEX.",
+  "description_zh-hk": "組成 HKSLLEX 詞庫之詞條陣列。",
   "type": "array",
   "items": {
     "type": "object",
@@ -511,6 +512,32 @@
             }
           }
         }
+      },
+      "suttonSignWriting": {
+        "type": "object",
+        "title": "Sutton SignWriting",
+        "description": "Sutton SignWriting representations of the sign.",
+        "description_zh-hk": "該手語詞條之 Sutton SignWriting 表示方式。",
+        "properties": {
+          "FSW": {
+            "type": "string",
+            "title": "Formal SignWriting",
+            "description": "The sign's Formal SignWriting (FSW) notation.",
+            "description_zh-hk": "該手語詞條之 Formal SignWriting（FSW）記法。"
+          },
+          "SWU": {
+            "type": "string",
+            "title": "SignWriting in Unicode",
+            "description": "The sign's SignWriting in Unicode (SWU) representation.",
+            "description_zh-hk": "該手語詞條之 SignWriting Unicode（SWU）表示方式。"
+          },
+          "renderNameSvg": {
+            "type": "string",
+            "title": "Rendered SVG filename",
+            "description": "The filename of the SVG rendering for the sign.",
+            "description_zh-hk": "該手語詞條之 SVG 繪圖檔名。"
+          }
+        }
       }
     },
     "required": [
@@ -523,6 +550,7 @@
     ],
     "title": "Entry",
     "description": "An entry of Hong Kong Sign Language word or sentence.",
+    "description_zh-hk": "一則香港手語詞語或句子詞條。",
     "uniqueItems": true
   }
 }
