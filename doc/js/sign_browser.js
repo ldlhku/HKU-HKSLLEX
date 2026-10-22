@@ -1164,7 +1164,7 @@
         list.target = "_blank";
         list.rel = "noopener";
         links.append(list);
-        showGuideDialog("CUHK CSLDS handshape notation", [content, links]);
+        showGuideDialog("Handshape notation", [content, links]);
     }
 
     function showArtoGuide() {

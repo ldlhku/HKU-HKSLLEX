@@ -187,7 +187,7 @@
             "Use this regular expression to validate a codepoint-notation entry:": "可用以下正規表示式驗證碼位記法：",
             "Reference": "參考資料",
             "Sandier, W. (2008). The syllable in sign language: Considering the other natural language modality.": "Sandier, W. (2008). The syllable in sign language: Considering the other natural language modality.",
-            "CUHK CSLDS handshape notation": "中大手語語言及聾人研究中心手形記譜法",
+            "Handshape notation": "手形記譜法",
             "ARTO is submorphemic: each morpheme may use one code per hand. Uppercase letters represent the dominant hand; lowercase letters represent the other hand. Morphemes are separated by commas; use 0 for an empty placeholder.": "ARTO 屬語素內層次：每個語素可為每隻手標註一個代碼。大寫代表主手，小寫代表副手。語素以逗號分隔；0 代表空位。",
             "ARTO code selector": "ARTO 代碼選擇器",
             "Sign video for {title}": "{title} 手語影片",
