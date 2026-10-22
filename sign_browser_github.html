@@ -1,142 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-    <title>HKSLLEX</title>
-    <link href="https://unpkg.com/tabulator-tables@6.2.5/dist/css/tabulator.min.css" rel="stylesheet">
-    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.5/dist/js/tabulator.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Search and explore the Hong Kong Sign Language Lexicon.">
+    <title>HKU-HKSLLEX Sign Browser</title>
     <link href="doc/css/ldl_css.css" rel="stylesheet">
-    <style>
-        .logo-container {
-            text-align: center;
-            /* Center the logo horizontally */
-            margin-bottom: 20px;
-            /* Add some space below the logo */
-        }
-
-        .logo-container img {
-            max-height: 72px;
-            /* Limit the logo height to 72px */
-            width: auto;
-            /* Maintain aspect ratio */
-        }
-
-        body {
-            font-variant-numeric: tabular-nums;
-        }
-
-        #details {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-        }
-
-        #details dt {
-            font-weight: bold;
-        }
-
-        #details dd {
-            margin-bottom: 10px;
-            margin-left: 20px;
-        }
-    </style>
+    <link href="doc/css/sign_browser.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
 </head>
-</head>
-
 <body>
-    <div class="logo-container">
-        <img src="doc/css/LDL_2024_WordMarkLogo.svg" alt="LDL Logo">
-    </div>
+    <header class="site-header">
+        <a class="logo-container" href="index.html" aria-label="HKU-HKSLLEX home">
+            <img src="doc/css/LDL_2024_WordMarkLogo.svg" alt="LDL Logo">
+        </a>
+        <div class="heading-copy">
+            <p class="eyebrow" data-i18n="Language Development Lab, HKU Linguistics">Language Development Lab, HKU Linguistics</p>
+            <h1 data-i18n="HKSL Sign browser">HKSL Sign browser</h1>
+            <p data-i18n="Explore signs by meaning, language, handshape, iconic strategy, and more.">Explore signs by meaning, language, handshape, iconic strategy, and more.</p>
+        </div>
+        <div class="header-controls">
+            <label class="sr-only" for="uiLanguage" data-i18n="Interface language">Interface language</label>
+            <select id="uiLanguage" aria-label="Interface language" data-i18n-aria="Interface language" title="Language switcher" data-i18n-title="Language switcher">
+                <option value="en-gb">English (UK)</option>
+                <option value="zh-hk">繁體中文（香港）</option>
+            </select>
+            <a class="schema-link" href="doc/data.schema.json.html" target="_blank" rel="noopener" data-i18n="Data schema">Data schema</a>
+        </div>
+    </header>
+    <main>
+        <section class="search-panel" aria-labelledby="search-title">
+            <div class="panel-heading">
+                <div>
+                    <h2 id="search-title" data-i18n="Find a sign">Find a sign</h2>
+                </div>
+                <a class="text-link" href="https://github.com/ldlhku/HKU-HKSLLEX/issues" target="_blank" rel="noopener" data-i18n="Report an issue">Report an issue</a>
+            </div>
+            <label class="quick-search-label" for="quickSearch" data-i18n="Search across all sign data">Search across all sign data</label>
+            <div class="quick-search">
+                <input id="quickSearch" type="search" placeholder="Try an English word, Chinese term, ID, or notation…" data-i18n-placeholder="Try an English word, Chinese term, ID, or notation…" autocomplete="off">
+                <button id="searchButton" class="button button-primary icon-button" type="button" aria-label="Search" data-i18n-aria="Search" title="Search" data-i18n-title="Search"><span class="material-symbols-outlined" aria-hidden="true">search</span></button>
+            </div>
 
-    <h1>HKU HKSLLEX Interactive Sign Browser</h1>
-    <p>(GitHub Version)</p>
-    <p><i>This database is in BETA! Please check <b><a href="https://github.com/ldlhku/HKU-HKSLLEX/issues">issues</a></b> with known issues.</i><br>
-    數據庫公測中！已知問題，請參閲<b><a href="https://github.com/ldlhku/HKU-HKSLLEX/issues">issues</a></b>。</p>
-    <div id="tableContainer"></div>
-    <span id="prompt">Click on the (+) sign to reveal more data.</span>
-    <script>
-        // Fetch data from data.json
-        fetch('data.json')
-            .then(response => response.json())
-            .then(datajson => {
-                // Create the Tabulator table after data is loaded
-                const tableContainer = document.getElementById('tableContainer');
-                const detailsContainer = document.getElementById('details');
+            <details class="advanced-search" open>
+                <summary><span data-i18n="Advanced filters">Advanced filters</span> <span class="summary-hint" data-i18n="Combine fields with nested AND / OR logic">Combine fields with nested AND / OR logic</span></summary>
+                <div id="filterGroups" class="filter-groups" aria-live="polite"></div>
+                <div class="builder-actions">
+                    <button id="clearFilters" class="button button-quiet" type="button"><span class="material-symbols-outlined" aria-hidden="true">filter_alt_off</span> <span data-i18n="Clear filters">Clear filters</span></button>
+                </div>
+            </details>
 
-                const table = new Tabulator(tableContainer, {
-                    columns: [
-                        { title: "ID", field: "HKU_HKSLLEX_ID.id", sorter: "string", headerFilter: true, responsive: 0 },
-                        {
-                            title: "Image", field: "videoFile.nameGIF", formatter: "image", formatterParams: {
-                                height: "128px",
-                                width: "228px",
-                                urlPrefix: "video/webp/"
-                            }, responsive: 0
-                        },
-                        { title: "English", field: "translation.EN-GB.primary", sorter: "string", headerFilter: true, responsive: 0 },
-                        { title: "Written Chinese (Hong Kong)", field: "translation.ZH-HK.primary", sorter: "string", headerFilter: true, responsive: 0 },
-                        { title: "Cantonese", field: "translation.ZH-Yue.primary", sorter: "string", headerFilter: true, responsive: 0 },
-                        { title: "Variant", field: "variant.notes", sorter: "string", headerFilter: true, responsive: 1 },
+            <div class="special-tools">
+                <button class="text-button" type="button" data-help="handshapes" data-i18n="Handshape notation guide">Handshape notation guide</button>
+                <span aria-hidden="true">·</span>
+                <button class="text-button" type="button" data-help="arto" data-i18n="ARTO notation guide">ARTO notation guide</button>
+            </div>
+            <p id="status" class="status" role="status" data-i18n="Loading sign data…">Loading sign data…</p>
+        </section>
 
-                        { title: "Entry Type", field: "HKU_HKSLLEX_ID.entryType", sorter: "string", headerFilter: true, responsive: 5 },
-                        { title: "Disambiguation (English)", field: "translation.EN-GB.disambiguation", sorter: "string", headerFilter: true, responsive: 0 },
-                        { title: "Disambiguation (Written Chinese)", field: "translation.ZH-HK.disambiguation", sorter: "string", headerFilter: true, responsive: 0 },
-                        { title: "English (Secondary)", field: "translation.EN-GB.secondary", sorter: "string", headerFilter: true, responsive: 5 },
-                        { title: "Standard Written Chinese (Secondary)", field: "translation.ZH-HK.secondary", sorter: "string", headerFilter: true, responsive: 5 },
-                        { title: "Cantonese (Secondary)", field: "translation.ZH-Yue.secondary", sorter: "string", headerFilter: true, responsive: 5 },
-                        { title: "English (Unprocessed)", field: "translation.unprocessed.en-GB", sorter: "string", headerFilter: true, responsive: 6 },
-                        { title: "Standard Written Chinese (Unprocessed)", field: "translation.unprocessed.zh-HK", sorter: "string", headerFilter: true, responsive: 6 },
-                        { title: "Cantonese (Unprocessed)", field: "translation.unprocessed.zh-YUE", sorter: "string", headerFilter: true, responsive: 6 },
-                        { title: "Source", field: "source", sorter: "string", headerFilter: true, responsive: 7 },
-                        { title: "CUHK CSLDS Handshape Codepoint Notation", field: "cuhkcslds_HandshapeFont.CodepointNotation", sorter: "string", headerFilter: true, responsive: 7 },
-                        { title: "ARTO", field: "arto.stringNotation", sorter: "string", headerFilter: true, responsive: 7 },
-                        { title: "ARTO Syllable Boundaries", field: "arto.syllableBoundaries", sorter: "string", headerFilter: true, responsive: 7 },
-                        { title: "EN-GB (Etymology Unprocessed)", field: "etymology.unprocessed.en-GB", sorter: "string", headerFilter: true, responsive: 4 },
-                        { title: "Deaf Rating (Avg)", field: "iconicity.rating.deaf.average", sorter: "number", headerFilter: true, responsive: 3 },
-                        { title: "Deaf Rating (Count)", field: "iconicity.rating.deaf.count", sorter: "number", headerFilter: true, responsive: 7 },
-                        { title: "Hearing Rating (Avg)", field: "iconicity.rating.hearing.average", sorter: "number", headerFilter: true, responsive: 3 },
-                        { title: "Hearing Rating (Count)", field: "iconicity.rating.hearing.count", sorter: "number", headerFilter: true, responsive: 7 }
-                    ],
+        <section class="results-section" aria-labelledby="results-heading">
+            <div class="results-toolbar">
+                <div>
+                    <h2 id="results-heading" data-i18n="Sign results">Sign results</h2>
+                    <p id="resultCount" class="result-count" aria-live="polite"></p>
+                </div>
+                <div class="result-controls">
+                    <label for="viewMode" data-i18n="View">View</label>
+                    <select id="viewMode" aria-label="Results view" data-i18n-aria="Results view">
+                        <option value="details" data-i18n="Details (table)">Details (table)</option>
+                        <option value="mode" data-i18n="Cards">Cards</option>
+                        <option value="very-small" data-i18n="Very small thumbnail">Very small thumbnail</option>
+                        <option value="small" data-i18n="Small thumbnail">Small thumbnail</option>
+                        <option value="medium" data-i18n="Medium thumbnail">Medium thumbnail</option>
+                        <option value="large" data-i18n="Large thumbnail">Large thumbnail</option>
+                    </select>
+                    <label for="sortField" data-i18n="Sort">Sort</label>
+                    <select id="sortField" aria-label="Sort results" data-i18n-aria="Sort results"></select>
+                    <button id="sortDirection" class="sort-direction icon-button" type="button" aria-label="Toggle sort direction" data-i18n-aria="Toggle sort direction" title="Toggle sort direction" data-i18n-title="Toggle sort direction"><span class="material-symbols-outlined" aria-hidden="true">arrow_upward</span></button>
+                    <button id="resetSort" class="sort-direction icon-button" type="button" aria-label="Reset sorting" data-i18n-aria="Reset sorting" title="Reset sorting" data-i18n-title="Reset sorting"><span class="material-symbols-outlined" aria-hidden="true">restart_alt</span></button>
+                    <label for="pageSize" data-i18n="Per page">Per page</label>
+                    <select id="pageSize" aria-label="Results per page" data-i18n-aria="Results per page">
+                        <option value="12">12</option>
+                        <option value="24">24</option>
+                        <option value="48">48</option>
+                        <option value="96">96</option>
+                    </select>
+                </div>
+            </div>
+            <div id="results" class="results-grid"></div>
+            <nav class="pagination" aria-label="Result pages" data-i18n-aria="Result pages">
+                <button id="firstPage" class="button button-quiet icon-button" type="button" aria-label="First page" data-i18n-aria="First page" title="First page" data-i18n-title="First page"><span class="material-symbols-outlined" aria-hidden="true">first_page</span></button>
+                <button id="previousPage" class="button button-quiet icon-button" type="button" aria-label="Previous page" data-i18n-aria="Previous page" title="Previous page" data-i18n-title="Previous page"><span class="material-symbols-outlined" aria-hidden="true">chevron_left</span></button>
+                <span id="pageIndicator"></span>
+                <button id="nextPage" class="button button-quiet icon-button" type="button" aria-label="Next page" data-i18n-aria="Next page" title="Next page" data-i18n-title="Next page"><span class="material-symbols-outlined" aria-hidden="true">chevron_right</span></button>
+                <button id="lastPage" class="button button-quiet icon-button" type="button" aria-label="Last page" data-i18n-aria="Last page" title="Last page" data-i18n-title="Last page"><span class="material-symbols-outlined" aria-hidden="true">last_page</span></button>
+                <label class="page-jump-label" for="pageJump" data-i18n="Jump to page">Jump to page</label>
+                <input id="pageJump" class="page-jump-input" type="number" min="1" value="1" aria-label="Page number" data-i18n-aria="Page number">
+                <button id="goToPage" class="button button-quiet icon-button" type="button" aria-label="Go to page" data-i18n-aria="Go to page" title="Go to page" data-i18n-title="Go to page"><span class="material-symbols-outlined" aria-hidden="true">keyboard_return</span></button>
+            </nav>
+        </section>
+    </main>
 
-                    data: datajson, // Use the fetched data here
-                    rowHeader: { formatter: "responsiveCollapse" },
-                    responsiveLayoutCollapseStartOpen: false,
-                    pagination: "local",
-                    paginationSize: 10,
-                    filter: true,
-                    sort: true,
-                    responsiveLayout: "collapse"
-                });
+    <footer class="site-footer">
+        <p class="acknowledgement acknowledgement-en" lang="en-gb">The handshape fonts are created by <a href="https://cslds.org/v5/online-resources/">CSLDS, CUHK</a>.</p>
+        <p class="acknowledgement acknowledgement-zh" lang="zh-hk">本網站內之手語字型檔乃 <a href="https://cslds.org/v5/online-resources/">香港中文大學手語及聾人研究中心</a> 製作。</p>
+    </footer>
 
-                function displayRowDetails(rowData) {
-                    console.log("Reveal details")
-                    // Clear previous details
-                    detailsContainer.innerHTML = '';
-
-                    // Create a definition list (dl) to display the details
-                    const dl = document.createElement('dl');
-                    for (const key in rowData) {
-                        const dt = document.createElement('dt');
-                        dt.textContent = key;
-                        dl.appendChild(dt);
-
-                        const dd = document.createElement('dd');
-                        // Stringify nested objects for better readability
-                        dd.textContent = JSON.stringify(rowData[key], null, 2);
-                        dl.appendChild(dd);
-                    }
-
-                    detailsContainer.appendChild(dl);
-                }
-            })
-            .catch(error => {
-                console.error('Error loading data:', error)
-                document.querySelector("#prompt").innerHTML = `Sorry! The database failed to load due to an error: ${error}`
-            }); // Handle fetch errors
-    </script>
-
-
+    <dialog id="helpDialog" class="help-dialog">
+        <div class="dialog-header">
+            <h2 id="dialogTitle"></h2>
+            <button id="closeDialog" class="dialog-close icon-button" type="button" aria-label="Close" data-i18n-aria="Close" title="Close" data-i18n-title="Close"><span class="material-symbols-outlined" aria-hidden="true">close</span></button>
+        </div>
+        <div id="dialogContent" class="dialog-content"></div>
+    </dialog>
+    <script src="doc/js/site_i18n.js" defer></script>
+    <script src="doc/js/sign_browser.js?v=20261023b" defer></script>
 </body>
-
 </html>

@@ -1,70 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HKU-HKSLLEX</title>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Explore the Hong Kong Sign Language Lexicon and its research data.">
+    <title>HKU-HKSLLEX — Hong Kong Sign Language Database</title>
     <link href="doc/css/ldl_css.css" rel="stylesheet">
-    <style>
-        /* Add this style for the logo */
-        .logo-container {
-            text-align: center;
-            /* Center the logo horizontally */
-            margin-bottom: 20px;
-            /* Add some space below the logo */
-        }
-
-        .logo-container img {
-            max-height: 128px;
-            /* Limit the logo height to 72px */
-            width: auto;
-            /* Maintain aspect ratio */
-        }
-    </style>
+    <link href="doc/css/sign_browser.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
 </head>
-
 <body>
+    <header class="site-header">
+        <a class="logo-container" href="index.html" aria-label="HKU-HKSLLEX home" data-i18n-aria="HKU-HKSLLEX home">
+            <img src="doc/css/LDL_2024_WordMarkLogo.svg" alt="LDL Logo">
+        </a>
+        <div class="heading-copy">
+            <p class="eyebrow" data-i18n="Hong Kong Sign Language">Hong Kong Sign Language</p>
+            <h1><a href="https://github.com/ldlhku/HKU-HKSLLEX-Mirror">HKU-HKSLLEX</a></h1>
+            <p data-i18n="Hong Kong Sign Language Database">Hong Kong Sign Language Database</p>
+        </div>
+        <div class="header-controls">
+            <label class="sr-only" for="uiLanguage" data-i18n="Interface language">Interface language</label>
+            <select id="uiLanguage" aria-label="Interface language" data-i18n-aria="Interface language" title="Language switcher" data-i18n-title="Language switcher">
+                <option value="en-gb">English (UK)</option>
+                <option value="zh-hk">繁體中文（香港）</option>
+            </select>
+            <a class="schema-link" href="sign_browser_github.html" data-i18n="Browse signs">Browse signs</a>
+        </div>
+    </header>
+    <main class="home-content">
+        <section class="home-panel" aria-labelledby="about-title">
+            <p class="eyebrow" data-i18n="About the lexicon">About the lexicon</p>
+            <h2 id="about-title" data-i18n="A resource for Hong Kong Sign Language">A resource for Hong Kong Sign Language</h2>
+            <p><span data-i18n="HKSLLEX is a collection of Hong Kong Sign Language data created as part of the documentation effort for the Knowledge Exchange project,">HKSLLEX is a collection of Hong Kong Sign Language data created as part of the documentation effort for the Knowledge Exchange project,</span> <a href="https://linguistics.hku.hk/ldlhku/hong-kong-sign-language">“The Sound of Silence - A Journey through Deaf Culture in Hong Kong”</a>.</p>
+            <p data-i18n="This database organizes HKSL signs, English translations, videos, and associated research data for linguists, researchers, educators, and people interested in learning the language.">This database organizes HKSL signs, English translations, videos, and associated research data for linguists, researchers, educators, and people interested in learning the language.</p>
+            <div class="home-actions">
+                <a class="home-action" href="sign_browser_github.html">
+                    <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                    <strong data-i18n="Browse signs online">Browse signs online</strong>
+                    <span data-i18n="Search the lexicon without downloading the database.">Search the lexicon without downloading the database.</span>
+                </a>
+                <a class="home-action" href="https://github.com/ldlhku/HKU-HKSLLEX/archive/refs/heads/main.zip">
+                    <span class="material-symbols-outlined" aria-hidden="true">download</span>
+                    <strong data-i18n="Download the database">Download the database</strong>
+                    <span data-i18n="Open sign_browser.html after extracting the archive.">Open sign_browser.html after extracting the archive.</span>
+                </a>
+            </div>
+        </section>
 
-    <div class="logo-container">
-        <img src="doc/css/LDL_2024_WordMarkLogo.svg" alt="LDL Logo">
-    </div>
+        <section class="home-panel" aria-labelledby="access-title">
+            <p class="eyebrow" data-i18n="Get started">Get started</p>
+            <h2 id="access-title" data-i18n="Access the data">Access the data</h2>
+            <p data-i18n="For the downloaded browser, include the video/webp folder. Videos in MP4 format are also available in the video folder. The reduced MP4 and WebP videos are available on OSF; full high-definition videos are available on request.">For the downloaded browser, include the video/webp folder. Videos in MP4 format are also available in the video folder. The reduced MP4 and WebP videos are available on OSF; full high-definition videos are available on request.</p>
+            <p data-i18n="You can also download the complete database and work directly with its data files.">You can also download the complete database and work directly with its data files.</p>
+        </section>
 
-    <h1 id="hku-hksllex---hong-kong-sign-language-database"><a target="_self"
-            href="https://github.com/ldlhku/HKU-HKSLLEX-Mirror">HKU-HKSLLEX</a> &ndash;
-        Hong Kong Sign Language Database</h1>
-    <p>HKSLLEX is a collection of Hong Kong Sign Language data as part of
-        the documentation effort of the Knowledge Exchange project <a
-            href="https://linguistics.hku.hk/ldlhku/hong-kong-sign-language">“The
-            Sound of Silence - A Journey through Deaf Culture in Hong Kong”</a>.
-        This repository is designed to store and organize a comprehensive
-        database of Hong Kong Sign Language (HKSL) words, their English
-        translations, and associated research data. It aims to provide a
-        valuable resource for linguists, researchers, and educators studying
-        HKSL, as well as individuals interested in learning the language.</p>
-    <h2 id="how-to-access-the-data"><strong>How to access the
-            data?</strong></h2>
-    <p>GitHub version only: you can browse the signs online <a target="_blank"
-            href="https://ldlhku.github.io/HKU-HKSLLEX/sign_browser_github.html">using the online sign
-            browser</a> without downloading.</p>
-    <p><a target="_blank" href="https://github.com/ldlhku/HKU-HKSLLEX/archive/refs/heads/main.zip">Download the
-            database</a>. After downloading the database, open “sign_browser.html” for a
-        user-friendly view of the database. The video/webp/ folder must be
-        downloaded for the sign_browser to work.</p>
-    <p>Alternatively, you can download the entire database and access the
-        data files. Videos are available in the video/ folder.</p>
-    <h2 id="documentation"><strong>Documentation</strong></h2>
-    <p>The database structure is defined in “data.schema.json” file. A <a target="_blank"
-            href="doc/data.schema.json.html">human
-            readable version</a> is available in the docs folder.</p>
-    <h2 id="data-format"><strong>Data Format</strong></h2>
-    <p>The data is stored in JSON format. A flattened CSV file (in UTF8-BOM)
-        is also provided for easy access.</p>
-    <p>The HKSL videos are provided in two formats. Available on OSF are the
-        videos in reduced MP4 and WebP formats (due to storage limitations);
-        they can be found in video/small and video/webP respectively. Full,
-        high-definition videos are available on request.</p>
+        <section class="home-panel" aria-labelledby="docs-title">
+            <p class="eyebrow" data-i18n="Reference">Reference</p>
+            <h2 id="docs-title" data-i18n="Documentation &amp; data format">Documentation &amp; data format</h2>
+            <p><span data-i18n="The database structure is defined in">The database structure is defined in</span> <code>data.schema.json</code>. The <a href="doc/data.schema.json.html" target="_blank" rel="noopener" data-i18n="Human-readable schema">human-readable schema</a> <span data-i18n="describes its fields.">describes its fields.</span></p>
+            <p data-i18n="Data is stored in JSON format. A flattened CSV file with UTF-8 BOM is also provided for easy access.">Data is stored in JSON format. A flattened CSV file with UTF-8 BOM is also provided for easy access.</p>
+        </section>
+    </main>
+    <script src="doc/js/site_i18n.js" defer></script>
 </body>
-
 </html>
