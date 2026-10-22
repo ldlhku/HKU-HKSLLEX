@@ -26,4 +26,4 @@ The HKSL videos are provided in two formats. Available on OSF are the videos in 
 
 ## **How to cite**
 
-Thompson, A. L., Van Hoey, T., Chik, A. W. C., & Do, Y. (2025). Iconic hand gestures from ideophones exhibit stability and emergent phonological properties: An iterated learning study. _Cognitive Linguistics_, 36(2), 227–259. [https://doi.org/10.1515/cog-2024-0033](https://doi.org/10.1515/cog-2024-0033).
+Thompson, A.L., Chik, A. W. C., Ngai, M., Chen, R., Ng, J., & Do, Y. (2026). Iconicity and semantic transparency in Hong Kong Sign Language: Evidence from ratings and three guessing paradigms. _Language and Cognition_, _18_, Article e21. https://doi.org/10.1017/langcog.2026.10070
